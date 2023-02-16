@@ -52,4 +52,13 @@ header > button {
 
 main {
     grid-area: main;
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.book-card {
+    background-color: white;
+    border-radius: 5px;
 }
