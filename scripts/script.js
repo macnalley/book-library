@@ -1,11 +1,14 @@
 // DOM methods
 function UI() {
   this.main = document.querySelector('main');
+  const addBtn = document.querySelector('#add-book');
+  // addBtn.addEventListener('onClick', )
 }
 
 function propertyToPara(book, property) {
   const p = document.createElement('p');
   p.textContent = book[property];
+  if (property === 'pages') p.textContent += ' pages';
   return p;
 }
 
@@ -32,7 +35,7 @@ UI.prototype.addBook = function (book) {
   bookCard.classList.add('book-card');
 
   const title = propertyToPara(book, 'title');
-  title.classList.add('ital');
+  title.classList.add('book-title');
   const author = propertyToPara(book, 'author');
   const pages = propertyToPara(book, 'pages');
   const isRead = isReadSwitch(propertyToPara(book, 'isRead'));
@@ -68,7 +71,7 @@ const library = new Library();
 const ui = new UI();
 
 // Temp books
-for (let i = 1; i < 10; i += 1) {
+for (let i = 1; i <= 10; i += 1) {
   const book = new Book('100 Years of Solitude', 'Gabriel Garcia Marquez', 300, true);
   library.addBook(book);
 }

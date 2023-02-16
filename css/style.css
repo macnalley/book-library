@@ -41,7 +41,7 @@ header > h1 {
     font-size: 2.7rem;
 }
 
-header > button {
+#add-book {
     border: 0px;
     border-radius: .6rem;
     font-size: 2rem;
@@ -51,14 +51,54 @@ header > button {
 }
 
 main {
+    padding: 2rem 1rem;
     grid-area: main;
-
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-items: start;
+    align-content: start;
 }
 
 .book-card {
-    background-color: white;
+    background-color:white;
     border-radius: 5px;
+    padding: 0px 5px;
+    text-align: center;
+    box-shadow: 2px 2px 5px gray;
+}
+
+.book-card > p {
+    margin: 1rem 0rem;
+}
+
+.book-title {
+    font-style: italic;
+}
+
+.pop-up {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .2);
+    display: grid;
+    place-items: center;
+}
+
+.pop-up > form {
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 5px gray;
+
+}
+
+form > div {
+    margin-top: 1rem;
+}
+
+label {
+    margin-top: 1rem;
 }
