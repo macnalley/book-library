@@ -63,7 +63,7 @@ main {
 .book-card {
     background-color:white;
     border-radius: 5px;
-    padding: 0px 5px;
+    padding: 0px .5rem;
     text-align: center;
     box-shadow: 2px 2px 5px gray;
 }
@@ -76,16 +76,16 @@ main {
     font-style: italic;
 }
 
-.pop-up {
+#pop-up {
     position: absolute;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background-color: rgba(0, 0, 0, .2);
     display: grid;
     place-items: center;
 }
 
-.pop-up > form {
+#pop-up > form {
     padding: 1rem;
     border-radius: 10px;
     background-color: white;
@@ -101,4 +101,17 @@ form > div {
 
 label {
     margin-top: 1rem;
+}
+
+form > div > label {
+    margin-right: .5rem;
+}
+
+form > button {
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: .5rem 2rem;
+    background-color: seashell;
+    border: .5px solid black;
+    border-radius: 10px;
 }
