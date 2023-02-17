@@ -222,11 +222,11 @@ function openPopup() {
 addBtn.addEventListener('click', openPopup);
 
 // Temp books
-for (let i = 1; i <= 10; i += 1) {
-  const book = new Book('100 Years of Solitude', 'Gabriel Garcia Marquez', 300, true);
-  library.addBook(book);
-}
+// for (let i = 1; i <= 10; i += 1) {
+//   const book = new Book('100 Years of Solitude', 'Gabriel Garcia Marquez', 300, true);
+//   library.addBook(book);
+// }
 
-for (let i = 0; i < library.books.length; i += 1) {
-  addBookToPage(library.books[i], i);
-}
+// for (let i = 0; i < library.books.length; i += 1) {
+//   addBookToPage(library.books[i], i);
+// }
