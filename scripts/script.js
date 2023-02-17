@@ -130,6 +130,7 @@ function createPopUp() {
   const titleInput = document.createElement('input');
   titleInput.setAttribute('type', 'text');
   titleInput.id = 'title';
+  titleInput.required = true;
 
   const authorLabel = document.createElement('label');
   authorLabel.setAttribute('for', 'author');
@@ -138,6 +139,7 @@ function createPopUp() {
   const authorInput = document.createElement('input');
   authorInput.setAttribute('type', 'text');
   authorInput.id = 'author';
+  authorInput.required = true;
 
   const pagesLabel = document.createElement('label');
   pagesLabel.setAttribute('for', 'pages');
@@ -146,6 +148,7 @@ function createPopUp() {
   const pagesInput = document.createElement('input');
   pagesInput.setAttribute('type', 'number');
   pagesInput.id = 'pages';
+  pagesInput.required = true;
 
   const readDiv = document.createElement('div');
 
