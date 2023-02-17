@@ -59,6 +59,16 @@ function updateBookList() {
   }
 }
 
+function toggleReadStatus(e) {
+  const card = e.target.parentElement;
+  const index = card.dataset.id;
+  const book = library.books[index];
+
+  book.changeReadStatus();
+
+  updateBookList();
+}
+
 function addBookToPage(book, index) {
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-card');
@@ -68,7 +78,17 @@ function addBookToPage(book, index) {
   title.classList.add('book-title');
   const author = propertyToPara(book, 'author');
   const pages = propertyToPara(book, 'pages');
-  const isRead = isReadSwitch(propertyToPara(book, 'isRead'));
+  const isReadBtn = document.createElement('button');
+
+  if (book.isRead) {
+    isReadBtn.textContent = 'Is Read';
+    isReadBtn.classList.add('book-read');
+  } else {
+    isReadBtn.textContent = 'Not Read';
+    isReadBtn.classList.add('book-not-read');
+  }
+
+  isReadBtn.addEventListener('click', toggleReadStatus);
 
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('delete');
@@ -78,7 +98,7 @@ function addBookToPage(book, index) {
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
-  bookCard.appendChild(isRead);
+  bookCard.appendChild(isReadBtn);
   bookCard.appendChild(deleteBtn);
 
   main.appendChild(bookCard);
@@ -100,6 +120,10 @@ function Book(title, author, pages, isRead) {
   this.pages = pages;
   this.isRead = isRead;
 }
+
+Book.prototype.changeReadStatus = function () {
+  this.isRead = this.isRead !== true;
+};
 
 function createNewBook(e) {
   e.preventDefault();
