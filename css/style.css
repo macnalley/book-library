@@ -55,7 +55,7 @@ main {
     grid-area: main;
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     align-items: start;
     align-content: start;
 }
@@ -75,6 +75,14 @@ main {
 .book-title {
     font-style: italic;
 }
+
+.delete {
+    margin-bottom: 1rem;
+    background-color: pink;
+    border: .5px solid black;
+    border-radius: 5px;
+    padding: .25rem 1rem;
+  }
 
 #pop-up {
     position: absolute;

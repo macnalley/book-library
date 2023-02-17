@@ -29,9 +29,40 @@ function isReadSwitch(isReadVar) {
   return isReadElement;
 }
 
-function addBookToPage(book) {
+// Library class and methods
+function Library() {
+  this.books = [];
+}
+
+Library.prototype.addBook = function (book) {
+  this.books.push(book);
+};
+
+// Library instatiated
+
+const library = new Library();
+
+function deleteBook(e) {
+  const card = e.target.parentElement;
+  const index = card.dataset.id;
+
+  library.books.splice(index, 1);
+
+  updateBookList();
+}
+
+function updateBookList() {
+  main.textContent = '';
+
+  for (let i = 0; i < library.books.length; i += 1) {
+    addBookToPage(library.books[i], i);
+  }
+}
+
+function addBookToPage(book, index) {
   const bookCard = document.createElement('div');
   bookCard.classList.add('book-card');
+  bookCard.dataset.id = index;
 
   const title = propertyToPara(book, 'title');
   title.classList.add('book-title');
@@ -39,10 +70,16 @@ function addBookToPage(book) {
   const pages = propertyToPara(book, 'pages');
   const isRead = isReadSwitch(propertyToPara(book, 'isRead'));
 
+  const deleteBtn = document.createElement('button');
+  deleteBtn.classList.add('delete');
+  deleteBtn.textContent = 'Delete';
+  deleteBtn.addEventListener('click', deleteBook);
+
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
   bookCard.appendChild(isRead);
+  bookCard.appendChild(deleteBtn);
 
   main.appendChild(bookCard);
 }
@@ -56,15 +93,6 @@ function stopPropagation(e) {
   e.stopPropagation();
 }
 
-// Library class and methods
-function Library() {
-  this.books = [];
-}
-
-Library.prototype.addBook = function (book) {
-  this.books.push(book);
-};
-
 // Book class and methods
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -73,23 +101,19 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
 }
 
-// Library instatiated
-
-const library = new Library();
-
 function createNewBook(e) {
   e.preventDefault();
 
   const title = e.target[0].value;
   const author = e.target[1].value;
   const pages = e.target[2].value;
-  const read = (e.target[3].value === 'on');
+  const read = e.target[3].checked;
 
   const book = new Book(title, author, pages, read);
 
   library.addBook(book);
 
-  addBookToPage(book);
+  addBookToPage(book, library.books.length - 1);
 
   closePopUp();
 }
@@ -176,4 +200,6 @@ for (let i = 1; i <= 10; i += 1) {
   library.addBook(book);
 }
 
-library.books.forEach((book) => addBookToPage(book));
+for (let i = 0; i < library.books.length; i += 1) {
+  addBookToPage(library.books[i], i);
+}
